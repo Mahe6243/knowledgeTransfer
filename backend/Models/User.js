@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -33,5 +34,20 @@ const userSchema = new mongoose.Schema({
         ref: "Order"
     }]
 }, { timestamps: true });
+
+userSchema.virtual('password').set(function (_password) {
+    this.encryptedPassword = this.encryptPassword(_password);
+})
+
+userSchema.methods = {
+    authenticate: function (plainPassword) {
+        return bcrypt.compareSync(plainPassword, this.encryptedPassword);
+    },
+    encryptPassword: function (plainPassword) {
+        const saltRounds = 10;
+        const hash = bcrypt.hashSync(plainPassword, saltRounds);
+        return hash;
+    }
+}
 
 module.exports = mongoose.model("User", userSchema);
