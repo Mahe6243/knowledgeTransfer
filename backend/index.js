@@ -1,9 +1,11 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
+const cookieParser = require("cookie-parser")
 const mongoose = require('mongoose');
 const authRoutes = require('./Routes/auth');
 const userRoutes = require('./Routes/user');
+
 
 
 const connectDB = async () => {
@@ -18,6 +20,9 @@ const connectDB = async () => {
 }
 
 connectDB();
+
+app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);

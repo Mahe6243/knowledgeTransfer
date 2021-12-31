@@ -1,11 +1,13 @@
 const { validationResult } = require('express-validator');
 const User = require('../Models/User');
+const jwt = require("jsonwebtoken");
+const ejwt = require("express-jwt");
 
 exports.signup = (req, res) => {
-    const errors = validationResult(req.body);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({
-            error: errors
+            error: errors.errors[0].msg
         });
     }
     let user = new User(req.body);
@@ -16,14 +18,52 @@ exports.signup = (req, res) => {
                 error: err
             })
         }
+        user.encryptedPassword = undefined;
         return res.status(200).json(user);
     })
 }
 
 exports.signin = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            error: errors.errors[0].msg
+        });
+    }
+    User.findOne({
+        email: req.body.email
+    }, (err, user) => {
+        if (err || !user) {
+            return res.status(400).json({ error: "User not found" })
+        }
+        if (!user.authenticate(req.body.password)) {
+            return res.status(400).json({ error: "Password Incorrect" })
+        }
+        const token = jwt.sign({
+            id: user._id
+        }, process.env.SECRET)
+
+        res.cookie("token", token)
+        user.encryptedPassword = undefined;
+        return res.status(200).json({
+            token: token,
+            user: user
+        })
+    })
+
+
 
 }
 
 exports.signout = (req, res) => {
-
+    res.clearCookie("token");
+    return res.status(200).json({
+        message: "User Signed Out"
+    })
 }
+
+exports.isSignedin = ejwt({
+    secret: process.env.SECRET,
+    algorithms: ['HS256'],
+    userProperty: "auth"
+})
