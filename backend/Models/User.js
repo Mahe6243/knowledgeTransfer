@@ -32,7 +32,11 @@ const userSchema = new mongoose.Schema({
     previousOrders: [{
         type: mongoose.SchemaTypes.ObjectId,
         ref: "Order"
-    }]
+    }],
+    priviliges: {
+        type: Number,
+        default: 0
+    }
 }, { timestamps: true });
 
 userSchema.virtual('password').set(function (_password) {

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
-const { signup, signin, signout, isSignedin } = require('../Controllers/auth');
+const { signup, signin, signout, isSignedIn } = require('../Controllers/auth');
 
 router.post('/signup', [
     check('firstName').isLength({ min: 1, max: 40 }).withMessage('First Name should be > 0 and <= 40 characters'),
@@ -16,6 +16,6 @@ router.post('/signin', [
     check('password').isLength({ min: 8 }).withMessage("Invalid Password")
 ], signin);
 
-router.get('/signout', isSignedin, signout);
+router.get('/signout', isSignedIn, signout);
 
 module.exports = router;

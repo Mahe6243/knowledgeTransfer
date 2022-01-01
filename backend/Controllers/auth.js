@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator');
 const User = require('../Models/User');
 const jwt = require("jsonwebtoken");
 const ejwt = require("express-jwt");
+const mongoose = require('mongoose');
 
 exports.signup = (req, res) => {
     const errors = validationResult(req);
@@ -50,9 +51,6 @@ exports.signin = (req, res) => {
             user: user
         })
     })
-
-
-
 }
 
 exports.signout = (req, res) => {
@@ -62,8 +60,17 @@ exports.signout = (req, res) => {
     })
 }
 
-exports.isSignedin = ejwt({
+exports.isSignedIn = ejwt({
     secret: process.env.SECRET,
     algorithms: ['HS256'],
     userProperty: "auth"
 })
+
+exports.isAuthenticated = (req, res, next) => {
+    if (!(req.profile && req.auth && req.profile._id.equals(mongoose.Types.ObjectId(req.auth.id)))) {
+        return res.status(400).json({
+            message: "You are not authenticated"
+        })
+    }
+    next();
+}

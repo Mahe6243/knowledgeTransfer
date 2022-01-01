@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const {isSignedin} = require('../Controllers/auth');
-const {getUserById,getUser,deleteUser} = require('../Controllers/user');
+const { isSignedIn, isAuthenticated } = require('../Controllers/auth');
+const { getUserById, getUser, deleteUser, modifyUser } = require('../Controllers/user');
 
-router.param('userId',getUserById);
-router.get('/user/:userId',isSignedin,getUser);
-router.delete('/user/:userId',isSignedin,deleteUser);
+router.param('userId', getUserById);
+router.get('/user/:userId', isSignedIn, getUser);
+router.put('/user/:userId', isSignedIn, isAuthenticated, modifyUser);
+router.delete('/user/:userId', isSignedIn, isAuthenticated, deleteUser);
 module.exports = router;
