@@ -8,6 +8,7 @@ exports.getUserById = (req, res, next, id) => {
                 error: err
             })
         }
+        user.encryptedPassword = undefined;
         req.profile = user;
         next();
     })

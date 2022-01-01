@@ -74,3 +74,19 @@ exports.isAuthenticated = (req, res, next) => {
     }
     next();
 }
+
+exports.isAdmin = (req, res, next) => {
+    let requestingUser = User.findById(req.auth.id, (err, user) => {
+        if (err) {
+            return res.status(400).json({
+                error: "Problem while searching"
+            })
+        }
+        if (user.priviliges === 0) {
+            return res.status(400).json({
+                message: "You are not admin"
+            })
+        }
+        next();
+    })
+}

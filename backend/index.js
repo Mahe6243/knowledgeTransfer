@@ -1,10 +1,11 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express')
 const app = express()
 const cookieParser = require("cookie-parser")
 const mongoose = require('mongoose');
 const authRoutes = require('./Routes/auth');
 const userRoutes = require('./Routes/user');
+const productRoutes = require('./Routes/product');
 
 
 
@@ -26,6 +27,7 @@ app.use(cookieParser());
 
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
+app.use('/api', productRoutes);
 
 const PORT = process.env.PORT || 3000
 
