@@ -16,6 +16,6 @@ router.post('/product/:userId', isSignedIn, isAuthenticated, [
 ],createProduct)
 router.get('/product/:productId/', getProduct)
 router.put('/product/:productId/:userId', isSignedIn, isAuthenticated, modifyProduct)
-router.delete('/prouct/:productId/:userId', isSignedIn, isAuthenticated, deleteProduct)
+router.delete('/product/:productId/:userId', isSignedIn, isAuthenticated, deleteProduct)
 
 module.exports = router;
