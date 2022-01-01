@@ -20,7 +20,12 @@ const productSchema = new mongoose.Schema({
     images: [{
         ContentType: String,
         data: Buffer
-    }]
+    }],
+    postedUser: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "User",
+        required: true
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Product", productSchema);

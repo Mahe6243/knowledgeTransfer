@@ -19,6 +19,7 @@ exports.createProduct = (req, res) => {
             error: errors
         })
     }
+    req.body.postedUser = req.profile._id;
     let product = new Product(req.body)
     product.save((err, product) => {
         if (err) {
@@ -29,11 +30,11 @@ exports.createProduct = (req, res) => {
         return res.status(200).json(product)
     })
 }
-exports.getProduct = (req,res) =>{
-    Product.findById(req.product._id,(err,product)=>{
-        if(err){
+exports.getProduct = (req, res) => {
+    Product.findById(req.product._id, (err, product) => {
+        if (err) {
             return res.status(400).json({
-                error:"product not found"
+                error: "product not found"
             })
         }
         return res.status(200).json(product);
@@ -57,12 +58,12 @@ exports.modifyProduct = (req, res) => {
 }
 
 exports.deleteProduct = (req, res) => {
-    Product.findByIdAndDelete(req.product._id,(err,product)=>{
-        if(err){
+    Product.findByIdAndDelete(req.product._id, (err, product) => {
+        if (err) {
             return res.status(400).json({
-                error:"product not found"
+                error: "product not found"
             })
         }
         return res.status(200).json(product);
     })
- }
+}

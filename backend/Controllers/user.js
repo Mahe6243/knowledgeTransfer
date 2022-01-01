@@ -13,6 +13,7 @@ exports.getUserById = (req, res, next, id) => {
         next();
     })
 }
+
 exports.getUser = (req, res) => {
     return res.status(200).json(req.profile);
 }

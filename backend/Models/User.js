@@ -30,10 +30,6 @@ const userSchema = new mongoose.Schema({
     addresses: [{
         type: String
     }],
-    previousOrders: [{
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: "Order"
-    }],
     priviliges: {
         type: Number,
         default: 0
