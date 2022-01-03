@@ -1,0 +1,37 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: #2596be;
+    padding-top: 10px;
+}
+
+.header {
+    background-color: #2596be;
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.signup-form{
+    margin-left: 10px;
+}
+
+.signup-form-input{
+    margin-top: 20px;
+}
+
+.signup-form-input-button {
+    margin-left: 13px;
+    background-color: #2596be;
+    box-shadow: black;
+    margin-top: 30px;
+}
