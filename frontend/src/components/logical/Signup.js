@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Base from "../UI/Base";
 import { API } from '../../backend';
+import { Link } from "react-router-dom";
 
 const Signup = () => {
 
@@ -13,6 +14,7 @@ const Signup = () => {
         error: "",
         success: false
     });
+
 
     const { firstName, lastName, email, password, phoneNumber, error, success } = values;
 
@@ -33,17 +35,20 @@ const Signup = () => {
         setValues({ ...values, phoneNumber: event.target.value });
     }
 
+    const successMessage = () => {
+        return (<div style={{ display: success ? "" : "none" }}>Successfully Registered. Please Login <Link to="/signin">Here</Link>
+        </div>)
+    }
+    const errorMessage = () => {
+        return (<div style={{ display: error ? "" : "none" }}>{
+            error
+        }
+        </div>)
+    }
     const submitHandler = (event) => {
         event.preventDefault();
-        setValues({
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-            phoneNumber: "",
-            error: "",
-            success: false
-        });
+        setValues({ ...values, error: false })
+
         return fetch(API + '/signup', {
             method: 'POST',
             headers: {
@@ -57,12 +62,34 @@ const Signup = () => {
                 password,
                 phoneNumber
             })
-        }).then(res => res.json().then(data => console.log(data)).catch(e => console.log(e))).catch(e => console.log(e));
+        }).then(res => {
+            res.json().then(data => {
+                if ('error' in data) {
+                    setValues({ ...values, error: data.error, success: false })
+                } else {
+                    setValues({
+                        firstName: "",
+                        lastName: "",
+                        email: "",
+                        password: "",
+                        phoneNumber: "",
+                        error: "",
+                        success: true
+                    })
+                }
+            }).catch(e => {
+                setValues({ ...values, error: e.error });
+            })
+        }).catch(e => {
+            console.log('outer catch');
+        });
     }
 
     return (
         <Base>
             <div className="row">
+                {successMessage()}
+                {errorMessage()}
                 <form className="col-md-5 row signup-form" onSubmit={submitHandler}>
                     <div className="signup-form-input">
                         <label htmlFor="firstName" className="form-label">First Name</label>
@@ -84,7 +111,6 @@ const Signup = () => {
                         <label htmlFor="phoneNumber" className="form-label">Phone</label>
                         <input type="tel" name="phoneNumber" onChange={phoneNumberChangeHandler} value={phoneNumber} className="form-control"></input>
                     </div>
-
                     <button type="submit" className="btn signup-form-input-button col-6">Submit</button>
                 </form>
             </div>

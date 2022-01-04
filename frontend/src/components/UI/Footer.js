@@ -3,7 +3,7 @@ import '../../global.css';
 const Footer = (props) => {
     return (
         <div className='footer'>
-            <p>Created by AVMC</p>
+            <p>Created by CMVA</p>
         </div>
     );
 }
