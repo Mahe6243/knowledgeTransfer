@@ -12,6 +12,8 @@ const Header = () => {
                 {!localStorage.getItem('token') && <li className="nav-item"><Link to='/signup'>Signup</Link></li>}
                 {!localStorage.getItem('token') && <li className="nav-item"><Link to='/signin'>Signin</Link></li>}
                 <li className="nav-item"><Link to='/signout'>Signout</Link></li>
+                <li className="nav-item"><Link to='/cart'>Cart</Link></li>
+                
             </ul>
         </div>
     );
