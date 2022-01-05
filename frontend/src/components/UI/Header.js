@@ -8,7 +8,7 @@ const Header = () => {
                 <li className="navbar-brand"><Link to='/'>Knowledge Transfer</Link></li>
                 <li className="nav-item">Buy Books</li>
                 <li className="nav-item">Sell Books</li>
-                <li className="nav-item">Profile</li>
+                <li className="nav-item"><Link to='/profile'>Profile</Link></li>
                 {!localStorage.getItem('token') && <li className="nav-item"><Link to='/signup'>Signup</Link></li>}
                 {!localStorage.getItem('token') && <li className="nav-item"><Link to='/signin'>Signin</Link></li>}
                 <li className="nav-item"><Link to='/signout'>Signout</Link></li>
