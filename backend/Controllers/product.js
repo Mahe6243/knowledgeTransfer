@@ -67,3 +67,14 @@ exports.deleteProduct = (req, res) => {
         return res.status(200).json(product);
     })
 }
+
+exports.getAllProductsOfUser = (req, res) => {
+    Product.find({ postedUser: req.profile._id.toString() }, (err, products) => {
+        if (err) {
+            return res.status(400).json({
+                error: err
+            })
+        }
+        return res.status(200).json(products);
+    })
+}

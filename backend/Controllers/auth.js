@@ -98,7 +98,7 @@ exports.isAdminOrSelf = (req, res, next) => {
                 error: "Problem while searching"
             })
         }
-        if (user.priviliges === 0 && !req.profile._id.equals(mongoose.ObjectId(req.auth.id))) {
+        if (user.priviliges === 0 && !req.profile._id.equals(mongoose.Types.ObjectId(req.auth.id))) {
             return res.status(400).json({
                 message: "You are not admin or This is not your profile"
             })
