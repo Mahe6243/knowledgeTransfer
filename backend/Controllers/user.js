@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const User = require("../Models/User");
 
 exports.getType = (req, res, next, type) => {
@@ -23,6 +24,12 @@ exports.getUser = (req, res) => {
 }
 
 exports.modifyUser = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            error: errors.errors[0].msg
+        });
+    }
     User.findByIdAndUpdate(req.profile._id, req.body, { new: true }).exec((err, user) => {
         if (err) {
             return res.status(400).json({
