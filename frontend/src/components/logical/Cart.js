@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import Base from '../UI/Base';
 import { useNavigate } from "react-router-dom";
 
-
 const Cart = () => {
     let navigate = useNavigate();
 

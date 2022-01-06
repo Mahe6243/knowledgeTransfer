@@ -2,6 +2,7 @@
 import Signin from "./Signin";
 function Signout() {
     localStorage.removeItem('token')
+    localStorage.removeItem('user')
     return (<Signin />);
 }
 

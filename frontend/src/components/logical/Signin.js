@@ -53,7 +53,6 @@ function Signin() {
                 } else {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('user', data.user._id);
-                    
                     navigate('/');
                 }
             }).catch(e => console.log(e));
