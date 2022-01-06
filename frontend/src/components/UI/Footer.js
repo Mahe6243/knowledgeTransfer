@@ -2,7 +2,7 @@ import '../../global.css';
 
 const Footer = (props) => {
     return (
-        <div className='footer'>
+        <div className='footer text-white'>
             <p>Created by CMVA</p>
         </div>
     );

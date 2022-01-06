@@ -2,6 +2,7 @@ import { useState } from "react";
 import Base from "../UI/Base";
 import { API } from '../../backend';
 import { Link } from "react-router-dom";
+import Card from "../UI/Card";
 
 const Signup = () => {
 
@@ -47,7 +48,7 @@ const Signup = () => {
     }
     const submitHandler = (event) => {
         event.preventDefault();
-        setValues({ ...values, error: false })
+        setValues({ ...values, error: false }) 
 
         return fetch(API + '/signup', {
             method: 'POST',
@@ -90,30 +91,41 @@ const Signup = () => {
             <div className="row">
                 {successMessage()}
                 {errorMessage()}
-                <form className="col-md-5 row signup-form" onSubmit={submitHandler}>
-                    <div className="signup-form-input">
+                <Card className = "col-md-5">
+
+                    <form className="row signup-form" onSubmit={submitHandler}>
+                        <div className="signup-form-input" >
                         <label htmlFor="firstName" className="form-label">First Name</label>
-                        <input type="text" name="firstName" onChange={firstNameChangeHandler} value={firstName} className="form-control"></input>
+                        <input type="text" name="firstName" onChange={firstNameChangeHandler} value={firstName} className="form-control border border-secondary"></input>
                     </div>
                     <div className="signup-form-input">
                         <label htmlFor="lastName" className="form-label">Last Name</label>
-                        <input type="text" name="lastName" onChange={lastNameChangeHandler} value={lastName} className="form-control"></input>
+                        <input type="text" name="lastName" onChange={lastNameChangeHandler} value={lastName} className="form-control border border-secondary"></input>
                     </div>
                     <div className="signup-form-input">
                         <label htmlFor="email" className="form-label">Email</label>
-                        <input type="email" name="email" onChange={emailChangeHandler} value={email} className="form-control"></input>
+                        <input type="email" name="email" onChange={emailChangeHandler} value={email} className="form-control border border-secondary"></input>
                     </div>
                     <div className="signup-form-input">
                         <label htmlFor="password" className="form-label">password</label>
-                        <input type="password" name="password" onChange={passwordChangeHandler} value={password} className="form-control"></input>
+                        <input type="password" name="password" onChange={passwordChangeHandler} value={password} className="form-control border border-secondary"></input>
                     </div>
                     <div className="signup-form-input">
                         <label htmlFor="phoneNumber" className="form-label">Phone</label>
-                        <input type="tel" name="phoneNumber" onChange={phoneNumberChangeHandler} value={phoneNumber} className="form-control"></input>
+                        <input type="tel" name="phoneNumber" onChange={phoneNumberChangeHandler} value={phoneNumber} className="form-control border border-secondary"></input>
                     </div>
-                    <button type="submit" className="btn signup-form-input-button col-6">Submit</button>
-                </form>
+                    <button type="submit" className="btn-gradient signup-form-input-button font-weight-bold text-white col-4">
+                            Submit</button>
+                    
+                    </form>
+                
+                </Card>
+                
+                <Card className="col-md-6 signup-img diagonal-bg">
+                </Card>
+            
             </div>
+        
         </Base>
     )
 }

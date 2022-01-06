@@ -9,6 +9,7 @@ import Profile from './components/logical/Profile';
 import Cart from './components/logical/Cart'
 import Sellbooks from './components/logical/Sellbooks';
 import Addedbooks from './components/logical/Addedbooks';
+import Buybooks from './components/logical/Buybooks';
 
 const routing = (<BrowserRouter>
   <Routes>
@@ -20,7 +21,7 @@ const routing = (<BrowserRouter>
     <Route path='/cart' element={<Cart />}></Route>
     <Route path='/sellbooks' element={<Sellbooks />}></Route>
     <Route path='/addedbooks' element={<Addedbooks />}></Route>
-
+    <Route path='/buybooks' element={<Buybooks />}></Route>
   </Routes>
 </BrowserRouter>);
 

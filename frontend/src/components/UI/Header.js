@@ -7,16 +7,18 @@ const Header = () => {
     }
 
     return (
-        <div className="header">
-            <ul className="navbar container">
-                <li className="navbar-brand"><Link to='/'>Knowledge Transfer</Link></li>
-                <li className="nav-item">Buy Books</li>
-                <li className="nav-item"><Link to='/sellbooks'>Sell Books</Link></li>
-                <li className="nav-item"><Link to='/profile'>Profile</Link></li>
-                {!isAuthenticated() && <li className="nav-item"><Link to='/signup'>Signup</Link></li>}
-                {!isAuthenticated() && <li className="nav-item"><Link to='/signin'>Signin</Link></li>}
-                {isAuthenticated() && <li className="nav-item"><Link to='/signout'>Signout</Link></li>}
-                {!isAuthenticated() && <li className="nav-item"><Link to='/cart'>Cart</Link></li>}
+
+        <div className="header text-white">
+            <ul className="navbar container bd-navbar-nav flex-row collapse show  nav-tabs ">
+
+                <li className="nav-item"><Link to='/' className='text-white nav-link'>Knowledge Transfer</Link></li>
+                <li className="nav-item text-white nav-link" ><Link to='/buybooks' className='text-white'>Buy Books</Link></li>
+                <li className="nav-item text-white  nav-link ">Sell Books</li>
+                <li className="nav-item text-white  nav-link ">Profile</li>
+                {!isAuthenticated() && <li className="nav-item text-white  nav-link "><Link to='/cart' className='text-white'>Cart</Link></li>}
+                {!isAuthenticated() && <li className="nav-item nav-link"><Link to='/signup' className='text-white'>Signup</Link></li>}
+                {!isAuthenticated() && <li className="nav-item nav-link"><Link to='/signin' className='text-white'>Signin</Link></li>}
+                {!isAuthenticated() && <li className="nav-item nav-link"><Link to='/signout' className='text-white'>Signout</Link></li>}
             </ul>
         </div>
     );

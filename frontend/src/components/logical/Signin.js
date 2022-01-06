@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Base from "../UI/Base";
 import { API } from "../../backend";
 import { useNavigate } from 'react-router-dom'
+import Card from "../UI/Card";
 
 function Signin() {
 
@@ -51,7 +52,7 @@ function Signin() {
                     setValues({ ...values, error: data.error })
                 } else {
                     localStorage.setItem('token', data.token);
-                    localStorage.setItem('user', data.user._id)
+                    localStorage.setItem('user', data.user._id);
                     navigate('/');
                 }
             }).catch(e => console.log(e));
@@ -61,21 +62,23 @@ function Signin() {
     }
     return (
         <Base>
-            <div className="row">
+        <Card className="signin-card col-sm-7">
+            <div className="row justify-content-md-center">
                 {errorMessage()}
                 <form className="col-md-5 row signup-form" onSubmit={submitHandler}>
                     <div className="signup-form-input">
                         <label htmlFor="email" className="form-label">Email</label>
-                        <input type="email" name="email" onChange={emailChangeHandler} value={email} className="form-control"></input>
+                        <input type="email" name="email" onChange={emailChangeHandler} value={email} className="form-control border border-secondary"></input>
                     </div>
                     <div className="signup-form-input">
                         <label htmlFor="password" className="form-label">password</label>
-                        <input type="password" name="password" onChange={passwordChangeHandler} value={password} className="form-control"></input>
+                        <input type="password" name="password" onChange={passwordChangeHandler} value={password} className="form-control border border-secondary"></input>
                     </div>
                     {error && <div>{error}</div>}
-                    <button type="submit" className="btn signup-form-input-button col-6">Submit</button>
+                    <button type="submit" className="btn-gradient signup-form-input-button col-4 text-white">Submit</button>
                 </form>
             </div>
+            </Card>
         </Base>
     )
 }
