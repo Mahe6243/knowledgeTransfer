@@ -13,7 +13,6 @@ const Header = () => {
                 {!localStorage.getItem('token') && <li className="nav-item nav-link"><Link to='/signup'className='text-white'>Signup</Link></li>}
                 {!localStorage.getItem('token') && <li className="nav-item nav-link"><Link to='/signin'className='text-white'>Signin</Link></li>}
                 {localStorage.getItem('token') &&< li className="nav-item nav-link"><Link to='/signout'className='text-white'>Signout</Link></li>}
-            
             </ul>
         </div>
     );
