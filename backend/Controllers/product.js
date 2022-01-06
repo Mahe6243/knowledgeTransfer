@@ -12,6 +12,20 @@ exports.getProductById = (req, res, next, id) => {
         next();
     })
 }
+
+exports.getAllProducts = (req, res) => {
+    Product.find({}, (err, products) => {
+        if (err || !products) {
+            return res.status(400).json({
+                error: 'No products available'
+            })
+        }
+        return res.status(200).json({
+            products: products
+        })
+    })
+}
+
 exports.createProduct = (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
