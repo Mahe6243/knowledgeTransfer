@@ -6,6 +6,9 @@ import Signup from './components/logical/Signup';
 import Signin from './components/logical/Signin';
 import Signout from './components/logical/Signout';
 import Profile from './components/logical/Profile';
+import Cart from './components/logical/Cart'
+import Sellbooks from './components/logical/Sellbooks';
+import Addedbooks from './components/logical/Addedbooks';
 
 const routing = (<BrowserRouter>
   <Routes>
@@ -13,6 +16,10 @@ const routing = (<BrowserRouter>
     <Route path='/signup' element={<Signup />}></Route>
     <Route path='/signin' element={<Signin />}></Route>
     <Route path='/signout' element={<Signout />}></Route>
+    <Route path='/profile' element={<Profile />}></Route>
+    <Route path='/cart' element={<Cart />}></Route>
+    <Route path='/sellbooks' element={<Sellbooks />}></Route>
+    <Route path='/addedbooks' element={<Addedbooks />}></Route>
 
   </Routes>
 </BrowserRouter>);
