@@ -4,13 +4,13 @@
     left: 0;
     right: 0;
     text-align: center;
-    background-color: #2596be;
-    padding-top: 10px;
-    margin-top: 2px;
+    background-color:black;
+    padding-top: 5px;
+    border-color: white;
 }
 
 .header {
-    background-color: #2596be;
+    background-color:black;
 }
 
 ul{
@@ -27,14 +27,53 @@ a{
 }
 
 .signup-form-input{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .signup-form-input-button {
-    margin-left: 13px;
-    background-color: #2596be;
-    box-shadow: black;
-    margin-top: 20px;
+    margin-left: 10px;
+    background-color:rgb(8, 4, 4);
+    box-shadow: whitesmoke;
+    margin-top: 10px;
+    display: block;
+}
+.box{
+    margin-left: 2%;
+    margin-right: 4%;
+    display: inline-block;
+}
+
+.signup-img {
+    float: left;
+    position:absolute;
+    margin-left: 50%; 
+    height: 78%;
+    margin-top: 0%;
+}
+.home{
+    margin-left:8%;
+    position: absolute;
+    background:linear-gradient(to right bottom, #020407 50%, #fafbfb 50%);
+    height:77%;
+}
+.homebutton1{
+    margin-left: 50%;
+    position:absolute;
+    bottom:30%;
+    box-shadow: 0px 15px 20px rgba(35, 36, 36, 0.4);
+}
+.homebutton2{
+    margin-left: 50%;
+    position:absolute;
+    bottom:20%;
+    box-shadow: 0px 15px 20px rgba(35, 36, 36, 0.4);
+}
+.diagonal-bg{
+    background:linear-gradient(to right bottom, #020407 50%, #fafbfb 50%);
+}
+.signin-card{
+    margin-left: 20%;
+    margin-top:4%;
 }
 
 .between-header-footer{
