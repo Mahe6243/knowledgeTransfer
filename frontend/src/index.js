@@ -6,6 +6,7 @@ import Signup from './components/logical/Signup';
 import Signin from './components/logical/Signin';
 import Signout from './components/logical/Signout';
 import Cart from './components/logical/Cart'
+import Buybooks from './components/logical/Buybooks';
 
 
 
@@ -19,6 +20,7 @@ const routing = (<BrowserRouter>
     <Route path='/signin' element={<Signin />}></Route>
     <Route path='/signout' element={<Signout />}></Route>
     <Route path='/cart' element={<Cart />}></Route>
+    <Route path='/buybooks' element={<Buybooks />}></Route>
 
   </Routes>
 </BrowserRouter>);

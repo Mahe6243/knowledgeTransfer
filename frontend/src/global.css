@@ -6,6 +6,7 @@
     text-align: center;
     background-color: #2596be;
     padding-top: 10px;
+    margin-top: 2px;
 }
 
 .header {
@@ -34,4 +35,8 @@ a{
     background-color: #2596be;
     box-shadow: black;
     margin-top: 20px;
+}
+
+.between-header-footer{
+    margin-bottom: 100px;
 }
