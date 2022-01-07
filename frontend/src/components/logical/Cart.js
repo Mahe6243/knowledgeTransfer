@@ -4,7 +4,6 @@ import Base from '../UI/Base';
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-    let navigate = useNavigate();
 
     const [cartItems, setCartItems] = useState([])
     const [userIdAndToken, setUserIdAndToken] = useState({
@@ -42,8 +41,7 @@ const Cart = () => {
             }
         }).then(res => {
             res.json().then(data => {
-                console.log(data);
-
+                setCartItems(data.cartItems)
             }).catch(e => {
                 console.log(e)
             })
@@ -61,7 +59,6 @@ const Cart = () => {
                 {cartItems &&
                     cartItems.map(item => <div key={item}>{item} <button onClick={() => {
                         removeItemFromCart(item);
-                        navigate('/cart')
                     }} className="favorite styled"
                         type="button">
                         Remove
