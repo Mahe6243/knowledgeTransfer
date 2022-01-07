@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
 const { getUserById } = require("../Controllers/user");
-const { createProduct, getProductById, getProduct, getAllProductsOfUser, modifyProduct, deleteProduct } = require("../Controllers/product")
-const { createProduct, getProductById, getAllProducts, getProduct, modifyProduct, deleteProduct } = require("../Controllers/product")
+const { createProduct, getProductById, getProduct, getAllProducts, getAllProductsOfUser, modifyProduct, deleteProduct } = require("../Controllers/product")
 const { isSignedIn, isAuthenticated } = require("../Controllers/auth");
 const { Router } = require('express');
 
@@ -16,7 +15,7 @@ router.post('/product/:userId', isSignedIn, isAuthenticated, [
    check('price').not().isEmpty().withMessage('enter the price')
 ], createProduct)
 router.get('/product/:productId/', getProduct)
-router.get('/product/:userId', isSignedIn, isAuthenticated, getAllProductsOfUser)
+router.get('/product/postedUser/:userId', isSignedIn, isAuthenticated, getAllProductsOfUser)
 router.get('/product', getAllProducts)
 router.put('/product/:productId/:userId', isSignedIn, isAuthenticated, modifyProduct)
 router.delete('/product/:productId/:userId', isSignedIn, isAuthenticated, deleteProduct)

@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
     addresses: [{
         type: String
     }],
-    addedItems: [{
+    cartItems: [{
         type: mongoose.SchemaTypes.ObjectId,
         ref: "Product"
     }],

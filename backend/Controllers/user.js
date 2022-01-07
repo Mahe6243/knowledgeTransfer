@@ -54,6 +54,22 @@ exports.deleteUser = (req, res) => {
     })
 }
 
+exports.getCartItems = (req, res) => {
+    User.findById(req.profile._id, (err, user) => {
+        if (err) {
+            console.log('inside err');
+
+            return res.status(400).json({
+                error: err
+            })
+        }
+        console.log(user.cartItems);
+        return res.status(200).json({
+            cartItems: user.cartItems
+        })
+    })
+}
+
 exports.modifyCartItems = (req, res) => {
     User.findById(req.profile._id, (err, user) => {
         if (err || !user) {
@@ -63,12 +79,19 @@ exports.modifyCartItems = (req, res) => {
         }
         let cartItems = user.cartItems;
         if (req.type == '0') {
-            cartItems.push(req.product._id);
+            if (cartItems) {
+                console.log('inside if')
+                cartItems.push(req.product._id);
+            }
+            else {
+                cartItems = [];
+                cartItems.push(req.product._id);
+            }
         }
         else {
             cartItems = cartItems.filter(item => !item.equals(req.product._id));
         }
-        User.findByIdAndUpdate(req.profile._id, { cartItems }).exec((err, user) => {
+        User.findByIdAndUpdate(req.profile._id, { cartItems }, { new: true }).exec((err, user) => {
             if (err) {
                 return res.status(400).json({
                     error: err
