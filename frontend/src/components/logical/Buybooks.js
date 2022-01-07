@@ -26,7 +26,6 @@ const Buybooks = () => {
             if (data.error) {
                 throw new Error(data.error)
             }
-            console.log('Added to cart');
         }).catch(e => console.log(e))).catch(e => console.log(e))
     }
     return (
