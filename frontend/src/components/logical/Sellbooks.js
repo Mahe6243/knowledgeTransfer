@@ -15,6 +15,7 @@ const Sellbooks = () => {
         userId: "",
         token: ""
     })
+
     useEffect(() => {
         let userId = localStorage.getItem('user')
         let token = localStorage.getItem('token')
@@ -29,11 +30,12 @@ const Sellbooks = () => {
     const priceChangeHandler = (event) => {
         setBook({ ...book, price: event.target.value })
     }
-    const postedBooksHandler = event => {
-        navigate('/addedbooks');
-    }
+
     const anotherBookHandler = event => {
         setBook({ name: "", description: "", price: "", success: false });
+    }
+    const addedBooksHandler = event => {
+        navigate('/addedbooks');
     }
     const submitHandler = event => {
         event.preventDefault();
@@ -75,7 +77,7 @@ const Sellbooks = () => {
             </form>}
             {book.success && <div>
                 <h1>Book added successfully.</h1>
-                <button onClick={postedBooksHandler}>Posted Books</button>
+                <button onClick={addedBooksHandler}>Added Books</button>
                 <button onClick={anotherBookHandler}>Add another book?</button>
             </div>}
         </Base>

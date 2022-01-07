@@ -9,13 +9,14 @@ const Profile = () => {
         email: "",
         password: "",
         phoneNumber: "",
+        cartItems: [],
         edit: false
     });
+    const [postedItems, setPostedItems] = useState([]);
     const [userIdAndToken, setUserIdAndToken] = useState({
         userId: "",
         token: ""
     })
-    const [edit, setEdit] = useState(false)
 
     useEffect(() => {
         let userId = localStorage.getItem('user')
@@ -26,7 +27,7 @@ const Profile = () => {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
-        }).then(res => res.json().then(data => { setProfile(data) }).catch()).catch()
+        }).then(res => res.json().then(data => { setProfile(data) }).catch(e => console.log(e))).catch(e => console.log(e))
     }, [])
 
     const firstNameChangeHandler = event => {
@@ -43,6 +44,7 @@ const Profile = () => {
     const editHandler = event => {
         setProfile({ ...profile, edit: true });
     }
+
 
     const submitHandler = event => {
         event.preventDefault();
@@ -92,7 +94,7 @@ const Profile = () => {
                             <label htmlFor="phoneNumber" className="form-label">Phone</label>
                             <input type="tel" name="phoneNumber" onChange={phoneNumberChangeHandler} defaultValue={profile.phoneNumber} className="form-control"></input>
                         </div>
-                        <button type="submit" className="btn signup-form-input-button col-6">Submit</button>
+                        <button type="submit" className="btn signup-form-input-button col-6 text-white">Submit</button>
                     </form>
                 </div>
             }
