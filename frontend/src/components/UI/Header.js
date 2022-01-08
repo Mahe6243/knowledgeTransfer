@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
 import '../../global.css';
+import isAuthenticated from '../logical/Auth'
 
 const Header = () => {
-    const isAuthenticated = () => {
-        return localStorage.getItem('token');
-    }
 
     return (
 

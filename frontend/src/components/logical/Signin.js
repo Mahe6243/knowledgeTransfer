@@ -53,7 +53,7 @@ function Signin() {
                 } else {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('user', data.user._id);
-                    navigate('/');
+                    navigate('/buybooks');
                 }
             }).catch(e => console.log(e));
         }).catch(e => {
@@ -62,22 +62,22 @@ function Signin() {
     }
     return (
         <Base>
-        <Card className="signin-card col-sm-7">
-            <div className="row justify-content-md-center">
-                {errorMessage()}
-                <form className="col-md-5 row signup-form" onSubmit={submitHandler}>
-                    <div className="signup-form-input">
-                        <label htmlFor="email" className="form-label"><h5>Email</h5></label>
-                        <input type="email" name="email" onChange={emailChangeHandler} value={email} className="form-control border border-secondary"></input>
-                    </div>
-                    <div className="signup-form-input">
-                        <label htmlFor="password" className="form-label"><h5>password</h5></label>
-                        <input type="password" name="password" onChange={passwordChangeHandler} value={password} className="form-control border border-secondary"></input>
-                    </div>
-                    {error && <div>{error}</div>}
-                    <button type="submit" className="btn-gradient signup-form-input-button col-4 text-white">Submit</button>
-                </form>
-            </div>
+            <Card className="signin-card col-sm-7">
+                <div className="row justify-content-md-center">
+                    {errorMessage()}
+                    <form className="col-md-5 row signup-form" onSubmit={submitHandler}>
+                        <div className="signup-form-input">
+                            <label htmlFor="email" className="form-label"><h5>Email</h5></label>
+                            <input type="email" name="email" onChange={emailChangeHandler} value={email} className="form-control border border-secondary"></input>
+                        </div>
+                        <div className="signup-form-input">
+                            <label htmlFor="password" className="form-label"><h5>password</h5></label>
+                            <input type="password" name="password" onChange={passwordChangeHandler} value={password} className="form-control border border-secondary"></input>
+                        </div>
+                        {error && <div>{error}</div>}
+                        <button type="submit" className="btn-gradient signup-form-input-button col-4 text-white">Submit</button>
+                    </form>
+                </div>
             </Card>
         </Base>
     )

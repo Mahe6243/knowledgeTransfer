@@ -13,17 +13,55 @@ exports.getProductById = (req, res, next, id) => {
     })
 }
 
-exports.getAllProducts = (req, res) => {
-    Product.find({}, (err, products) => {
-        if (err || !products) {
-            return res.status(400).json({
-                error: 'No products available'
+exports.getSearchTerm = (req, res, next, searchTerm) => {
+    req.searchTerm = searchTerm;
+    next();
+}
+
+exports.getProducts = (req, res) => {
+    if (req.searchTerm === "0") {
+        Product.find({}, (err, products) => {
+            if (err || !products) {
+                return res.status(400).json({
+                    error: 'No products available'
+                })
+            }
+            return res.status(200).json({
+                products: products
             })
-        }
-        return res.status(200).json({
-            products: products
         })
-    })
+    }
+    else {
+        Product.aggregate([
+            {
+                $search: {
+                    "autocomplete": {
+                        "path": "name",
+                        "query": req.searchTerm
+                    }
+                }
+            },
+            {
+                $project: {
+                    "_id": 1,
+                    "name": 1,
+                    "description": 1,
+                    "price": 1,
+                    "images": 1,
+                    "postedUser": 1
+                }
+            }
+        ]).exec((err, products) => {
+            if (err) {
+                return res.status(400).json({
+                    error: "No such products"
+                })
+            }
+            return res.status(200).json({
+                products: products
+            })
+        })
+    }
 }
 
 exports.createProduct = (req, res) => {
