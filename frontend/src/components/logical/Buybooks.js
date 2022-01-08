@@ -59,13 +59,14 @@ const Buybooks = () => {
         <Base>
           <Card className="search-card col-sm-4 container">
             <form>
-                
-                <input className="form-control border border-secondary rounded signup-form input-lg" placeholder="Search Books..." type='text' name="searchTerm" value={searchTerm} onChange={searchTermHandler}></input>
+                <input className="form-control border border-secondary rounded input-lg"
+                 placeholder="Search Books..." type='text' name="searchTerm" value={searchTerm}
+                  onChange={searchTermHandler}></input>
             </form>
             </Card>
-            <div className="between-header-footer rowc row grid">
+            <div className="between-header-footer button-shadow rowc row grid">
                 {books && books.map(book => <div key={book.description + book.price + Math.random()}>
-                    <div className='card text-center column'>
+                    <div className='card text-center button-shadow column'>
                         <h4>{book.name}</h4>
                         <p>{book.description}</p>
                         <h5>{book.price}</h5>

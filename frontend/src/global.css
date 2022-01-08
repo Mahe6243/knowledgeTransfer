@@ -80,8 +80,10 @@ a{
 }
 .search-card{
     margin-top: 1%;
+    right: 0%;
     margin-left: 30%;
-    box-shadow: 0px 15px 20px rgba(35, 36, 36, 0.4);
+    border-style: groove;
+    box-shadow: 0px 15px 20px rgba(209, 226, 226, 0.4);
 }
 
 .between-header-footer{
@@ -114,7 +116,9 @@ a{
     margin: 80px;
     display: grid;
     grid-template-columns: repeat(3,1fr);
+    margin-left:12%;
     grid-gap:30px;
     align-items: center;
+    float: left;
 }
 
