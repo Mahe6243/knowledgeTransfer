@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { API } from "../../backend";
 import Base from "../UI/Base";
+import Card from "../UI/Card";
 
 const Buybooks = () => {
     const [books, setBooks] = useState([]);
@@ -31,12 +32,16 @@ const Buybooks = () => {
     }
     return (
         <Base>
-            <div className="between-header-footer">
-                {books.map(book => <div key={book.description + book.price + Math.random()}>
-                    <h4>{book.name}</h4>
-                    <p>{book.description}</p>
-                    <h5>{book.price}</h5>
-                    <button onClick={() => addToCartHandler(book._id)}>Add to cart</button></div>)}
+            <div className="between-header-footer rowc row grid">
+                    {books.map(book => <div key={book.description + book.price + Math.random()}>
+                    <div className='card text-center column'>
+                        <h4>{book.name}</h4>
+                        <p>{book.description}</p>
+                        <h5>{book.price}</h5>
+                        <button className="signup-form-input-button text-white button-shadow" onClick={() => addToCartHandler(book._id)}>Add to cart</button>
+                    </div>
+            </div>)}
+                 
             </div>
         </Base>
     )

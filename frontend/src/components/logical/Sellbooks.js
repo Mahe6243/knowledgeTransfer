@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Base from '../UI/Base';
 import { API } from '../../backend';
 import { useNavigate } from 'react-router-dom';
+import Card from "../UI/Card";
 
 const Sellbooks = () => {
     let navigate = useNavigate();
@@ -60,26 +61,29 @@ const Sellbooks = () => {
     }
     return (
         <Base>
+           <Card className='signin-card col-sm-7'>
             {!book.success && <form onSubmit={submitHandler}>
+            
                 <div className="signup-form-input">
-                    <label htmlFor="name" className="form-label">Book Name</label>
-                    <input type="text" name="name" onChange={nameChangeHandler} value={book.name} className="form-control"></input>
+                    <label htmlFor="name" className="form-label"><h5>Book Name</h5></label>
+                    <input type="text" name="name" onChange={nameChangeHandler} value={book.name} className="form-control  border border-secondary"></input>
                 </div>
                 <div className="signup-form-input">
-                    <label htmlFor="description" className="form-label">Description</label>
-                    <input type="text-area" name="description" onChange={descriptionChangeHandler} value={book.description} className="form-control"></input>
+                    <label htmlFor="description" className="form-label"><h5>Description</h5></label>
+                    <input type="text-area" name="description" onChange={descriptionChangeHandler} value={book.description} className="form-control  border border-secondary"></input>
                 </div>
                 <div className="signup-form-input">
-                    <label htmlFor="price" className="form-label">Price</label>
-                    <input type="number" name="price" onChange={priceChangeHandler} value={book.price} className="form-control"></input>
+                    <label htmlFor="price" className="form-label"><h5>Price</h5></label>
+                    <input type="number" name="price" onChange={priceChangeHandler} value={book.price} className="form-control  border border-secondary"></input>
                 </div>
-                <button type='submit'>Add</button>
+                <button type='submit' className='btn-gradient signup-form-input-button font-weight-bold text-white col-3'>Add</button>
             </form>}
             {book.success && <div>
                 <h1>Book added successfully.</h1>
                 <button onClick={addedBooksHandler}>Added Books</button>
                 <button onClick={anotherBookHandler}>Add another book?</button>
             </div>}
+            </Card>
         </Base>
     )
 }

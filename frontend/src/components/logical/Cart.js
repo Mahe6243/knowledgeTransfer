@@ -54,17 +54,18 @@ const Cart = () => {
 
     return (
         <Base>
-            <div>
-                This is Cart Page here
+            <h5>This is Cart Page here</h5>
+            <div  className="between-header-footer rowc row grid">
                 {cartItems &&
-                    cartItems.map(item => <div key={item}>{item} <button onClick={() => {
+                    cartItems.map(item => <div className='card text-center column' key={item}>{item} 
+                    <button onClick={() => {
                         removeItemFromCart(item);
-                    }} className="favorite styled"
+                    }} className="favorite styled signup-form-input-button text-white button-shadow"
                         type="button">
                         Remove
                     </button></div>)
                 }
-            </div>
+                </div>
         </Base>
     )
 }

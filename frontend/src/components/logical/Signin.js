@@ -67,11 +67,11 @@ function Signin() {
                 {errorMessage()}
                 <form className="col-md-5 row signup-form" onSubmit={submitHandler}>
                     <div className="signup-form-input">
-                        <label htmlFor="email" className="form-label">Email</label>
+                        <label htmlFor="email" className="form-label"><h5>Email</h5></label>
                         <input type="email" name="email" onChange={emailChangeHandler} value={email} className="form-control border border-secondary"></input>
                     </div>
                     <div className="signup-form-input">
-                        <label htmlFor="password" className="form-label">password</label>
+                        <label htmlFor="password" className="form-label"><h5>password</h5></label>
                         <input type="password" name="password" onChange={passwordChangeHandler} value={password} className="form-control border border-secondary"></input>
                     </div>
                     {error && <div>{error}</div>}
