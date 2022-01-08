@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { API } from "../../backend";
 import Base from "../UI/Base";
 import isAuthenticated from "./Auth";
+import Card from "../UI/Card";
 
 const Buybooks = () => {
     let navigate = useNavigate();
@@ -56,10 +57,12 @@ const Buybooks = () => {
     }
     return (
         <Base>
+          <Card className="search-card col-sm-4 container">
             <form>
-                <label htmlFor="searchTerm">Search Books: </label>
-                <input type='text' name="searchTerm" value={searchTerm} onChange={searchTermHandler}></input>
+                
+                <input className="form-control border border-secondary rounded signup-form input-lg" placeholder="Search Books..." type='text' name="searchTerm" value={searchTerm} onChange={searchTermHandler}></input>
             </form>
+            </Card>
             <div className="between-header-footer rowc row grid">
                 {books && books.map(book => <div key={book.description + book.price + Math.random()}>
                     <div className='card text-center column'>

@@ -76,12 +76,12 @@ const Sellbooks = () => {
                     <label htmlFor="price" className="form-label"><h5>Price</h5></label>
                     <input type="number" name="price" onChange={priceChangeHandler} value={book.price} className="form-control  border border-secondary"></input>
                 </div>
-                <button type='submit' className='btn-gradient signup-form-input-button font-weight-bold text-white col-3'>Add</button>
+                <button type='submit' className='btn-gradient button-shadow signup-form-input-button font-weight-bold text-white col-3'>Add</button>
             </form>}
-            {book.success && <div>
+            {book.success && <div className='row'>
                 <h1>Book added successfully.</h1>
-                <button onClick={addedBooksHandler}>Added Books</button>
-                <button onClick={anotherBookHandler}>Add another book?</button>
+                <button className='btn-gradient button-shadow signup-form-input-button font-weight-bold text-white col-md-3' onClick={addedBooksHandler}>Added Books</button>
+                <button className='btn-gradient button-shadow signup-form-input-button font-weight-bold text-white col-md-3' onClick={anotherBookHandler}>Add another book?</button>
             </div>}
             </Card>
         </Base>
