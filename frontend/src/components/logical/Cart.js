@@ -55,7 +55,7 @@ const Cart = () => {
     return (
         <Base>
             <h5>This is Cart Page here</h5>
-            <div  className="between-header-footer button-shadow row grid">
+            <div  className="between-header-footer row grid">
                 {cartItems &&
                     cartItems.map(item => <div className='card text-center button-shadow column' key={item}>{item} 
                     <button onClick={() => {

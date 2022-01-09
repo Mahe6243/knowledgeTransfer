@@ -49,7 +49,7 @@ const Addedbooks = () => {
     return (
         <Base>
             <button className="signup-form-input-button text-white button-shadow" onClick={addBookHandler}>Add more books</button>
-            <div className="between-header-footer button-shadow grid">
+            <div className="between-header-footer grid">
                 {addedBooks.length > 0 && addedBooks.map(book =>
                     <div className='card text-center button-shadow column' key={book.description + book.price} >
                         <h4>{book.name}</h4>
