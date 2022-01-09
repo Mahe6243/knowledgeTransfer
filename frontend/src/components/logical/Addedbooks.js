@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../backend";
 import Base from "../UI/Base"
+import Image from "./Image";
 
 const Addedbooks = () => {
     let navigate = useNavigate();
@@ -52,6 +53,7 @@ const Addedbooks = () => {
             <div className="between-header-footer grid">
                 {addedBooks.length > 0 && addedBooks.map(book =>
                     <div className='card text-center button-shadow column' key={book.description + book.price} >
+                        {book.image && <Image id={book._id}></Image>}
                         <h4>{book.name}</h4>
                         <h5>{book.description}</h5>
                         <h5>{book.price}</h5>

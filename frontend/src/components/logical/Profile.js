@@ -73,34 +73,34 @@ const Profile = () => {
         <Base>
             {!profile.edit && <div>
                 <Card className="list-group list-group-flush signin-card col-sm-6">
-                <h2 className="list-group-item"><h5>UserName:</h5>{profile.firstName}_{profile.lastName}</h2>
-                <p className="list-group-item"><h5>E-mail:</h5>{profile.email}</p>
-                <p className="list-group-item"><h5>phoneNumber:</h5> {profile.phoneNumber}</p>
-                <button className="signup-form-input-button text-white button-shadow col-3"  onClick={editHandler}>Edit</button>
+                    <h2 className="list-group-item"><div>UserName:</div>{profile.firstName}_{profile.lastName}</h2>
+                    <h6 className="list-group-item"><div>E-mail:</div>{profile.email}</h6>
+                    <h6 className="list-group-item"><div>phoneNumber:</div> {profile.phoneNumber}</h6>
+                    <button className="signup-form-input-button text-white button-shadow col-3" onClick={editHandler}>Edit</button>
                 </Card>
             </div>}
             {
                 profile.edit && <div>
                     <Card className='signin-card col-sm-7'>
-                    <form className="col-md-5 row signup-form" onSubmit={submitHandler}>
-                        <div className="signup-form-input">
-                            <label htmlFor="firstName" className="form-label"><h5>First Name</h5></label>
-                            <input type="text" name="firstName" onChange={firstNameChangeHandler} defaultValue={profile.firstName} className="form-control border border-secondary"></input>
-                        </div>
-                        <div className="signup-form-input">
-                            <label htmlFor="lastName" className="form-label"><h5>Last Name</h5></label>
-                            <input type="text" name="lastName" onChange={lastNameChangeHandler} defaultValue={profile.lastName} className="form-control border border-secondary"></input>
-                        </div>
-                        <div className="signup-form-input">
-                            <label htmlFor="email" className="form-label"><h5>Email</h5></label>
-                            <input type="email" name="email" value={profile.email} className="form-control border border-secondary" readOnly></input>
-                        </div>
-                        <div className="signup-form-input">
-                            <label htmlFor="phoneNumber" className="form-label"><h5>Phone</h5></label>
-                            <input type="tel" name="phoneNumber" onChange={phoneNumberChangeHandler} defaultValue={profile.phoneNumber} className="form-control border border-secondary"></input>
-                        </div>
-                        <button type="submit" className="btn signup-form-input-button col-6 text-white">Submit</button>
-                    </form>
+                        <form className="col-md-5 row signup-form" onSubmit={submitHandler}>
+                            <div className="signup-form-input">
+                                <label htmlFor="firstName" className="form-label"><h5>First Name</h5></label>
+                                <input type="text" name="firstName" onChange={firstNameChangeHandler} defaultValue={profile.firstName} className="form-control border border-secondary"></input>
+                            </div>
+                            <div className="signup-form-input">
+                                <label htmlFor="lastName" className="form-label"><h5>Last Name</h5></label>
+                                <input type="text" name="lastName" onChange={lastNameChangeHandler} defaultValue={profile.lastName} className="form-control border border-secondary"></input>
+                            </div>
+                            <div className="signup-form-input">
+                                <label htmlFor="email" className="form-label"><h5>Email</h5></label>
+                                <input type="email" name="email" value={profile.email} className="form-control border border-secondary" readOnly></input>
+                            </div>
+                            <div className="signup-form-input">
+                                <label htmlFor="phoneNumber" className="form-label"><h5>Phone</h5></label>
+                                <input type="tel" name="phoneNumber" onChange={phoneNumberChangeHandler} defaultValue={profile.phoneNumber} className="form-control border border-secondary"></input>
+                            </div>
+                            <button type="submit" className="btn signup-form-input-button col-6 text-white">Submit</button>
+                        </form>
                     </Card>
                 </div>
             }

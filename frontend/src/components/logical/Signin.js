@@ -3,11 +3,14 @@ import Base from "../UI/Base";
 import { API } from "../../backend";
 import { useNavigate } from 'react-router-dom'
 import Card from "../UI/Card";
+import isAuthenticated from "./Auth";
 
 function Signin() {
-
     let navigate = useNavigate();
 
+    if (isAuthenticated()) {
+        navigate('/buybooks');
+    }
     useEffect(() => navigate('/signin'), []);
 
 

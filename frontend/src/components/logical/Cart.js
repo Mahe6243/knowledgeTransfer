@@ -2,10 +2,11 @@ import { API } from "../../backend"
 import { useEffect, useState } from "react"
 import Base from '../UI/Base';
 import { useNavigate } from "react-router-dom";
+import CartItem from "./CartItem";
 
 const Cart = () => {
 
-    const [cartItems, setCartItems] = useState([])
+    const [cartItems, setCartItems] = useState([]);
     const [userIdAndToken, setUserIdAndToken] = useState({
         userId: "",
         token: ""
@@ -55,17 +56,18 @@ const Cart = () => {
     return (
         <Base>
             <h5>This is Cart Page here</h5>
-            <div  className="between-header-footer row grid">
+            <div className="between-header-footer row grid">
                 {cartItems &&
-                    cartItems.map(item => <div className='card text-center button-shadow column' key={item}>{item} 
-                    <button onClick={() => {
-                        removeItemFromCart(item);
-                    }} className="favorite styled signup-form-input-button text-white button-shadow"
-                        type="button">
-                        Remove
-                    </button></div>)
+                    cartItems.map(item => <div className='card text-center button-shadow column' key={item}>
+                        <CartItem id={item}></CartItem>
+                        <button onClick={() => {
+                            removeItemFromCart(item);
+                        }} className="favorite styled signup-form-input-button text-white button-shadow"
+                            type="button">
+                            Remove
+                        </button></div>)
                 }
-                </div>
+            </div>
         </Base>
     )
 }
