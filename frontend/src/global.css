@@ -32,7 +32,7 @@ a{
 
 .signup-form-input-button {
     margin-left: 10px;
-    background-color:rgb(8, 4, 4);
+    background-color:rgb(0, 0, 0);
     box-shadow: whitesmoke;
     margin-top: 10px;
     display: block;
@@ -53,20 +53,20 @@ a{
 .home{
     margin-left:8%;
     position: absolute;
-    background:linear-gradient(to right bottom, #020407 50%, #fafbfb 50%);
+    background:linear-gradient(to right bottom, #000000 50%, #ffffff 50%);
     height:77%;
 }
 .homebutton1{
     margin-left: 50%;
     position:absolute;
     bottom:30%;
-    box-shadow: 0px 15px 20px rgba(35, 36, 36, 0.4);
+    box-shadow: 0px 15px 20px rgba(255, 255, 255, 0.4);
 }
 .homebutton2{
     margin-left: 50%;
     position:absolute;
     bottom:20%;
-    box-shadow: 0px 15px 20px rgba(35, 36, 36, 0.4);
+    box-shadow: 0px 15px 20px rgba(255, 255, 255, 0.4);
 }
 .button-shadow{
     box-shadow: 0px 15px 20px rgba(35, 36, 36, 0.4);
@@ -81,7 +81,9 @@ a{
 .search-card{
     margin-top: 1%;
     right: 0%;
-    margin-left: 30%;
+    margin-right: 35%;
+    margin-left: 20%;
+    position:absolute;
     border-style: groove;
     box-shadow: 0px 15px 20px rgba(209, 226, 226, 0.4);
 }
@@ -93,12 +95,23 @@ a{
     position: absolute;
     width:20%;
 }
+.cardbutton{
+    margin-left: 8px;
+    background-color:rgb(0, 0, 0);
+    position: inherit;
+    box-shadow: whitesmoke;
+   bottom: 0;
+   margin-bottom: 0px;
+    display: block;
+
+}
 .rowc{
     margin: 0 -5px;
 }
 .column{
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 450px;
+    top: 50px;
 }
 .row:after {
     content: "";
@@ -114,10 +127,11 @@ a{
   }
 .grid{
     margin: 80px;
+    margin-bottom: 20%;
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    margin-left:12%;
-    grid-gap:30px;
+    margin-left:2%;
+    grid-gap:90px;
     align-items: center;
     float: left;
 }

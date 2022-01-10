@@ -75,6 +75,7 @@ const Buybooks = () => {
                         onChange={searchTermHandler}></input>
                 </form>
             </Card>
+           
             <div className="between-header-footer rowc row grid">
                 {books && books.map(book => <div key={book.description + book.price + Math.random()}>
                     <div className='card text-center button-shadow column'>
@@ -82,12 +83,12 @@ const Buybooks = () => {
                         <h4>{book.name}</h4>
                         <p>{book.description}</p>
                         <h5>{book.price}</h5>
-                        {!book.addedToCart && <button className="signup-form-input-button text-white button-shadow" onClick={() => addToCartHandler(book)}>Add to cart</button>}
+                        {!book.addedToCart && <button className="cardbutton text-white button-shadow" onClick={() => addToCartHandler(book)}>Add to cart</button>}
                         {book.addedToCart && <span>Added to cart</span>}
                     </div>
                 </div>)}
-
             </div>
+            
         </Base>
     )
 

@@ -8,7 +8,7 @@ const Image = (props) => {
     }, [props.id])
 
     return (
-        <div>
+        <div className="border border-dark">
             <img src={image} alt="book" height="200px" width="200px"></img>
         </div>
     );

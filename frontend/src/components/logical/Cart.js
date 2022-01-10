@@ -51,14 +51,14 @@ const Cart = () => {
 
     return (
         <Base>
-            <h5>This is Cart Page here</h5>
-            <div className="between-header-footer row grid">
+            
+            <div className="between-header-footer rowc row grid">
                 {cartItems &&
                     cartItems.map(item => <div className='card text-center button-shadow column' key={item}>
                         <CartItem id={item}></CartItem>
                         <button onClick={() => {
                             removeItemFromCart(item);
-                        }} className="favorite styled signup-form-input-button text-white button-shadow"
+                        }} className="favorite styled cardbutton text-white button-shadow"
                             type="button">
                             Remove
                         </button></div>)

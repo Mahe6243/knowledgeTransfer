@@ -46,15 +46,15 @@ const Addedbooks = () => {
 
     return (
         <Base>
-            <button className="signup-form-input-button text-white button-shadow" onClick={addBookHandler}>Add more books</button>
-            <div className="between-header-footer grid">
+            <button className="cardbutton text-white button-shadow col-sm-3" onClick={addBookHandler}>Add more books</button>
+            <div className="between-header-footer rowc row grid ">
                 {addedBooks.length > 0 && addedBooks.map(book =>
                     <div className='card text-center button-shadow column' key={book.description + book.price} >
                         {book.image && <Image id={book._id}></Image>}
                         <h4>{book.name}</h4>
                         <h5>{book.description}</h5>
                         <h5>{book.price}</h5>
-                        <button className="signup-form-input-button text-white button-shadow" onClick={() => removeHandler(book)}>Remove</button>
+                        <button className="cardbutton text-white button-shadow" onClick={() => removeHandler(book)}>Remove</button>
                     </div>)}
             </div>
             {addedBooks.length === 0 && <h2>You haven't added any books yet</h2>}
