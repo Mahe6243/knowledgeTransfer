@@ -17,10 +17,11 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    images: [{
+    image: {
         ContentType: String,
+        mimetype: String,
         data: Buffer
-    }],
+    },
     postedUser: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "User",

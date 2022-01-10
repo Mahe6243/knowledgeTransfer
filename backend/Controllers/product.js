@@ -1,5 +1,8 @@
 const Product = require("../Models/Product")
 const { validationResult } = require('express-validator');
+var fs = require('fs');
+var path = require('path');
+const User = require('../Models/User');
 
 exports.getProductById = (req, res, next, id) => {
     Product.findById(id, (err, product) => {
@@ -72,7 +75,13 @@ exports.createProduct = (req, res) => {
         })
     }
     req.body.postedUser = req.profile._id;
-    let product = new Product(req.body)
+    let product = new Product({
+        name: req.body.name, description: req.body.description, price: req.body.price, postedUser: req.body.postedUser, image: {
+            data: req.file.buffer,
+            contentType: req.file.mimetype,
+            mimetype: req.file.mimetype
+        }
+    })
     product.save((err, product) => {
         if (err) {
             return res.status(400).json({
@@ -116,6 +125,22 @@ exports.deleteProduct = (req, res) => {
                 error: "product not found"
             })
         }
+        User.find({}, (err, users) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                })
+            }
+            for (let index = 0; index < users.length; index++) {
+                User.findByIdAndUpdate(users[index]._id, { cartItems: users[index].cartItems.filter(item => !item._id.equals(product._id)) }, { new: true }, (err, user) => {
+                    if (err) {
+                        return res.status(400).json({
+                            error: err
+                        })
+                    }
+                })
+            }
+        })
         return res.status(200).json(product);
     })
 }
@@ -128,5 +153,16 @@ exports.getAllProductsOfUser = (req, res) => {
             })
         }
         return res.status(200).json(products);
+    })
+}
+
+exports.getImage = (req, res) => {
+    Product.findById(req.product._id, (err, product) => {
+        if (err) {
+            return res.json(400).json({
+                error: err
+            })
+        }
+        return res.send(product.image.data);
     })
 }

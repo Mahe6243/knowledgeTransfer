@@ -1,20 +1,18 @@
 import { API } from "../../backend"
 import { useEffect, useState } from "react"
 import Base from '../UI/Base';
-import { useNavigate } from "react-router-dom";
+import CartItem from "./CartItem";
 
 const Cart = () => {
 
-    const [cartItems, setCartItems] = useState([])
-    const [userIdAndToken, setUserIdAndToken] = useState({
-        userId: "",
-        token: ""
-    });
+    const [cartItems, setCartItems] = useState([]);
+    const userId = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
     const removeItemFromCart = (removingItem) => {
-        fetch(`${API}/user/${userIdAndToken.userId}/${removingItem}/1`, {
+        fetch(`${API}/user/${userId}/${removingItem}/1`, {
             method: 'PUT',
             headers: {
-                "Authorization": `Bearer ${userIdAndToken.token}`
+                "Authorization": `Bearer ${token}`
             }
         }).then(res => {
             res.json().then(data => {
@@ -31,9 +29,7 @@ const Cart = () => {
     }
 
     useEffect(() => {
-        let userId = localStorage.getItem('user')
-        let token = localStorage.getItem('token')
-        setUserIdAndToken({ userId: userId, token: token });
+        let isMounted = true;
         fetch(`${API}/user/cart/${userId}`, {
             method: "GET",
             headers: {
@@ -41,31 +37,33 @@ const Cart = () => {
             }
         }).then(res => {
             res.json().then(data => {
-                setCartItems(data.cartItems)
+                if (isMounted) setCartItems(data.cartItems)
             }).catch(e => {
                 console.log(e)
             })
         }).catch(e => {
             console.log(e)
         })
-    }, [])
+        return () => { isMounted = false; }
+    }, [userId, token])
 
 
 
     return (
         <Base>
-            <h5>This is Cart Page here</h5>
-            <div  className="between-header-footer row grid">
+            
+            <div className="between-header-footer rowc row grid">
                 {cartItems &&
-                    cartItems.map(item => <div className='card text-center button-shadow column' key={item}>{item} 
-                    <button onClick={() => {
-                        removeItemFromCart(item);
-                    }} className="favorite styled signup-form-input-button text-white button-shadow"
-                        type="button">
-                        Remove
-                    </button></div>)
+                    cartItems.map(item => <div className='card text-center button-shadow column' key={item}>
+                        <CartItem id={item}></CartItem>
+                        <button onClick={() => {
+                            removeItemFromCart(item);
+                        }} className="favorite styled cardbutton text-white button-shadow"
+                            type="button">
+                            Remove
+                        </button></div>)
                 }
-                </div>
+            </div>
         </Base>
     )
 }
