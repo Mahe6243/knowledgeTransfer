@@ -7,15 +7,11 @@ import Image from "./Image";
 const Addedbooks = () => {
     let navigate = useNavigate();
     const [addedBooks, setAddedBooks] = useState([]);
-    const [userIdAndToken, setUserIdAndToken] = useState({
-        userId: "",
-        token: ""
-    })
+    const userId = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
-        let userId = localStorage.getItem('user')
-        let token = localStorage.getItem('token')
-        setUserIdAndToken({ token: token, userId: userId })
+        let isMounted = true;
         fetch(API + `/product/postedUser/${userId}`, {
             method: 'GET',
             headers: {
@@ -25,19 +21,20 @@ const Addedbooks = () => {
             if (data.error) {
                 throw new Error("Cant get added books")
             }
-            setAddedBooks(data);
+            if (isMounted) setAddedBooks(data);
         }).catch(e => console.log(e))).catch(e => console.log(e))
-    }, [])
+        return () => { isMounted = false; }
+    }, [addedBooks, token, userId])
 
     const addBookHandler = event => {
         navigate('/sellbooks');
     }
 
     const removeHandler = item => {
-        fetch(API + `/product/${item._id}/${userIdAndToken.userId}`, {
+        fetch(API + `/product/${item._id}/${userId}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${userIdAndToken.token}`
+                'Authorization': `Bearer ${token}`
             }
         }).then(res => res.json().then(data => {
             if (data.error) {

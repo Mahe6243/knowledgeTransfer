@@ -17,32 +17,29 @@ const Buybooks = () => {
         postedUser: "",
         addedToCart: false
     }]);
-    const [userIdAndToken, setUserIdAndToken] = useState({
-        userId: "",
-        token: ""
-    });
+
+    const userId = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+
     const [searchTerm, setSearchTerm] = useState("");
-    useEffect(() => {
-        let userId = localStorage.getItem('user')
-        let token = localStorage.getItem('token')
-        setUserIdAndToken({ userId: userId, token: token });
 
-    }, [])
 
     useEffect(() => {
+        let isMounted = true;
         if (searchTerm === "") {
             fetch(API + `/product/search/0`, {
                 method: 'GET'
             }).then(res => res.json().then(data => {
                 let booksArr = data.products.map(product => { product.addedToCart = false; return product })
-                setBooks(booksArr);
+                if (isMounted) setBooks(booksArr);
             }).catch(e => console.log(e))).catch(e => console.log(e))
         }
         else {
             fetch(API + `/product/search/${searchTerm}`, {
                 method: 'GET'
-            }).then(res => res.json().then(data => setBooks(data.products)).catch(e => console.log(e))).catch(e => console.log(e))
+            }).then(res => res.json().then(data => { if (isMounted) setBooks(data.products) }).catch(e => console.log(e))).catch(e => console.log(e))
         }
+        return () => { isMounted = false; }
     }, [searchTerm]);
 
     const searchTermHandler = event => {
@@ -51,10 +48,10 @@ const Buybooks = () => {
     }
     const addToCartHandler = (book) => {
         if (isAuthenticated()) {
-            fetch(API + `/user/${userIdAndToken.userId}/${book._id}/0`, {
+            fetch(API + `/user/${userId}/${book._id}/0`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${userIdAndToken.token}`
+                    'Authorization': `Bearer ${token}`
                 }
             }).then(res => res.json().then(data => {
                 if (data.error) {
@@ -81,8 +78,7 @@ const Buybooks = () => {
             <div className="between-header-footer rowc row grid">
                 {books && books.map(book => <div key={book.description + book.price + Math.random()}>
                     <div className='card text-center button-shadow column'>
-                        {console.log(book)}
-                        <Image id={book._id}></Image>
+                        {book.image && <Image id={book._id}></Image>}
                         <h4>{book.name}</h4>
                         <p>{book.description}</p>
                         <h5>{book.price}</h5>

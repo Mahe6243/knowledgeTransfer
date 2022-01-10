@@ -5,7 +5,7 @@ const Image = (props) => {
     const [image, setImage] = useState("");
     useEffect(() => {
         setImage(`${API}/product/image/${props.id}`)
-    }, [])
+    }, [props.id])
 
     return (
         <div>

@@ -1,21 +1,18 @@
 import { API } from "../../backend"
 import { useEffect, useState } from "react"
 import Base from '../UI/Base';
-import { useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
 
 const Cart = () => {
 
     const [cartItems, setCartItems] = useState([]);
-    const [userIdAndToken, setUserIdAndToken] = useState({
-        userId: "",
-        token: ""
-    });
+    const userId = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
     const removeItemFromCart = (removingItem) => {
-        fetch(`${API}/user/${userIdAndToken.userId}/${removingItem}/1`, {
+        fetch(`${API}/user/${userId}/${removingItem}/1`, {
             method: 'PUT',
             headers: {
-                "Authorization": `Bearer ${userIdAndToken.token}`
+                "Authorization": `Bearer ${token}`
             }
         }).then(res => {
             res.json().then(data => {
@@ -32,9 +29,7 @@ const Cart = () => {
     }
 
     useEffect(() => {
-        let userId = localStorage.getItem('user')
-        let token = localStorage.getItem('token')
-        setUserIdAndToken({ userId: userId, token: token });
+        let isMounted = true;
         fetch(`${API}/user/cart/${userId}`, {
             method: "GET",
             headers: {
@@ -42,14 +37,15 @@ const Cart = () => {
             }
         }).then(res => {
             res.json().then(data => {
-                setCartItems(data.cartItems)
+                if (isMounted) setCartItems(data.cartItems)
             }).catch(e => {
                 console.log(e)
             })
         }).catch(e => {
             console.log(e)
         })
-    }, [])
+        return () => { isMounted = false; }
+    }, [userId, token])
 
 
 

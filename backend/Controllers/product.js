@@ -2,6 +2,7 @@ const Product = require("../Models/Product")
 const { validationResult } = require('express-validator');
 var fs = require('fs');
 var path = require('path');
+const User = require('../Models/User');
 
 exports.getProductById = (req, res, next, id) => {
     Product.findById(id, (err, product) => {
@@ -124,6 +125,22 @@ exports.deleteProduct = (req, res) => {
                 error: "product not found"
             })
         }
+        User.find({}, (err, users) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                })
+            }
+            for (let index = 0; index < users.length; index++) {
+                User.findByIdAndUpdate(users[index]._id, { cartItems: users[index].cartItems.filter(item => !item._id.equals(product._id)) }, { new: true }, (err, user) => {
+                    if (err) {
+                        return res.status(400).json({
+                            error: err
+                        })
+                    }
+                })
+            }
+        })
         return res.status(200).json(product);
     })
 }
