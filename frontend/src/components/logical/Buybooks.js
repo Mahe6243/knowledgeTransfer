@@ -37,7 +37,10 @@ const Buybooks = () => {
         else {
             fetch(API + `/product/search/${searchTerm}`, {
                 method: 'GET'
-            }).then(res => res.json().then(data => { if (isMounted) setBooks(data.products) }).catch(e => console.log(e))).catch(e => console.log(e))
+            }).then(res => res.json().then(data => {
+                let booksArr = data.products.map(product => { product.addedToCart = false; return product })
+                if (isMounted) setBooks(booksArr)
+            }).catch(e => console.log(e))).catch(e => console.log(e))
         }
         return () => { isMounted = false; }
     }, [searchTerm]);
@@ -75,10 +78,10 @@ const Buybooks = () => {
                         onChange={searchTermHandler}></input>
                 </form>
             </Card>
-            <div className="between-header-footer rowc row grid">
+            <div className="between-header-footer rowc row grid whole">
                 {books && books.map(book => <div key={book.description + book.price + Math.random()}>
-                    
-                    <div className='card text-center button-shadow column'>
+
+                    <div className='card text-center button-shadow column book'>
                         {book.image && <Image id={book._id}></Image>}
                         <h4>{book.name}</h4>
                         <p>{book.description}</p>
