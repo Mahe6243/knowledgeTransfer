@@ -46,8 +46,8 @@ const Addedbooks = () => {
 
     return (
         <Base>
-            <button className="cardbutton text-white button-shadow col-sm-3" onClick={addBookHandler}>Add more books</button>
-            <div className="between-header-footer rowc row grid ">
+            <button className="cardbutton text-white button-shadow col-sm-2" onClick={addBookHandler}>Add more books</button>
+            <div className="between-header-footer rowc row added-cart-grid">
                 {addedBooks.length > 0 && addedBooks.map(book =>
                     <div className='card text-center button-shadow column' key={book.description + book.price} >
                         {book.image && <Image id={book._id}></Image>}
