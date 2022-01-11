@@ -107,7 +107,7 @@ const Profile = () => {
                     <button className="signup-form-input-button text-white button-shadow col-3" onClick={editHandler}>Edit</button>
                 </Card>
                 {orders.length > 0 && <ul className=" between-header-footer rowc row added-cart-grid">
-                    {orders.map(order => <li className='card text-center column'key={order._id}>{order._id}<button className=" cardbutton text-white button-shadow "onClick={() => { cancelHandler(order._id) }}>cancel</button></li>)}
+                    {orders.map(order => <li className='card text-center column' key={order._id}>{order._id}<button className=" cardbutton text-white button-shadow " onClick={() => { cancelHandler(order._id) }}>cancel</button></li>)}
                 </ul>}
             </div>}
             {
@@ -132,7 +132,7 @@ const Profile = () => {
                             </div>
                             <div className="signup-form-input">
                                 <label htmlFor="address" className="form-label">Address</label>
-                                <input type="text" name="address" onChange={addressChangeHandler} value={profile.address} className="form-control border border-secondary"></input>
+                                <input type="text" name="address" onChange={addressChangeHandler} defaultValue={profile.address} className="form-control border border-secondary"></input>
                             </div>
                             <button type="submit" className="btn signup-form-input-button col-6 text-white">Submit</button>
                         </form>
