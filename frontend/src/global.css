@@ -151,10 +151,24 @@ a{
     align-items: center;
     float: left;
 }
+.orders-grid{
+    margin: 40px;
+    padding: 3em;
+    margin-bottom: 5%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-left:0%;
+    grid-gap:90px;
+    align-items: center;
+    float: left;
+}
 .orders{
     margin-top:0%;
     margin-left: 20%;
 }
 .no{
     margin-left: 10%;
+}
+.card-order{
+    height:20px;
 }

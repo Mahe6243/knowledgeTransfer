@@ -106,8 +106,8 @@ const Profile = () => {
                     <h6 className="list-group-item"><div>address:</div> {profile.address}</h6>
                     <button className="signup-form-input-button text-white button-shadow col-3" onClick={editHandler}>Edit</button>
                 </Card>
-                {orders.length > 0 && <ul className=" between-header-footer rowc row added-cart-grid">
-                    {orders.map(order => <li className='card text-center column'key={order._id}>{order._id}<button className=" cardbutton text-white button-shadow "onClick={() => { cancelHandler(order._id) }}>cancel</button></li>)}
+                {orders.length > 0 && <ul className=" between-header-footer rowc row orders-grid">
+                    {orders.map(order => <li className='card-order text-center column'key={order._id}>{order._id}<button className=" cardbutton text-white button-shadow "onClick={() => { cancelHandler(order._id) }}>cancel</button></li>)}
                 </ul>}
             </div>}
             {
