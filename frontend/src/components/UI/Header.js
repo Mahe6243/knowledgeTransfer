@@ -6,8 +6,8 @@ const Header = () => {
 
     return (
 
-        <div className="header text-white">
-            <ul className="navbar container bd-navbar-nav flex-row collapse show  nav-tabs justify-content-start ">
+        <div className="header text-white col-auto">
+            <ul className="navbar navbar-default yamm nav-tabs ">
 
                 <li className="nav-item"><Link to='/' className='text-white nav-link'>Knowledge Transfer</Link></li>
                 <li className="nav-item text-white nav-link" ><Link to='/buybooks' className='text-white'>Buy Books</Link></li>

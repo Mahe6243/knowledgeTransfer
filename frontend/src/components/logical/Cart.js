@@ -52,7 +52,7 @@ const Cart = () => {
     return (
         <Base>
             
-            <div className="between-header-footer rowc row grid">
+            <div className="between-header-footer rowc row added-cart-grid">
                 {cartItems &&
                     cartItems.map(item => <div className='card text-center button-shadow column' key={item}>
                         <CartItem id={item}></CartItem>

@@ -7,7 +7,7 @@ const Home = () => {
 
     return (
         <Base>
-            <Card className="col-md-14 p-5 text-white home">
+            <Card className=" col-9 p-4 text-white home">
                 <h1 className='text-center'>KNOWLEDGE TRANSFER</h1>
                 <h6 className='text-center'>Resell your books </h6>
                 <button type="submit"
