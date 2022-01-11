@@ -3,9 +3,14 @@ import Base from '../UI/Base';
 import { API } from '../../backend';
 import { useNavigate } from 'react-router-dom';
 import Card from "../UI/Card";
+import isAuthenticated from './Auth';
 
 const Sellbooks = () => {
     let navigate = useNavigate();
+
+    if (!isAuthenticated()) {
+        navigate('/signin')
+    }
     const [book, setBook] = useState({
         name: "",
         description: "",

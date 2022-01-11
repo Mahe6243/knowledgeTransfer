@@ -88,7 +88,7 @@ const Buybooks = () => {
                     </div>
                 </div>)}
             </div>
-            
+
         </Base>
     )
 
