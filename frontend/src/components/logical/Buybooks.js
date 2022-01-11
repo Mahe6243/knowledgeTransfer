@@ -75,7 +75,7 @@ const Buybooks = () => {
                         onChange={searchTermHandler}></input>
                 </form>
             </Card>
-           
+
             <div className="between-header-footer rowc row grid">
                 {books && books.map(book => <div key={book.description + book.price + Math.random()}>
                     <div className='card text-center button-shadow column'>
@@ -88,7 +88,7 @@ const Buybooks = () => {
                     </div>
                 </div>)}
             </div>
-            
+
         </Base>
     )
 
